@@ -32,7 +32,7 @@ try:
         client.publish("/control/status", "up")
         print("Message published: up")
         
-        # Wait for 60 seconds before sending the next message
+        # Wait for 30 seconds before sending the next message
         time.sleep(30)
 except KeyboardInterrupt:
     print("Disconnected")
