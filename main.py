@@ -11,6 +11,7 @@ MQTT_BROKER = os.environ.get("MQTT_BROKER", "localhost")
 MQTT_PORT = int(os.environ.get("MQTT_PORT", 1883))
 MQTT_USERNAME = os.environ.get("MQTT_USERNAME", None)
 MQTT_PASSWORD = os.environ.get("MQTT_PASSWORD", None)
+MQTT_SLEEP = int(os.environ.get("MQTT_SLEEP", 60))
 
 # Initialize MQTT client
 client = mqtt.Client()
@@ -21,7 +22,7 @@ if MQTT_USERNAME and MQTT_PASSWORD:
     client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
 
 # Connect to the broker
-client.connect(MQTT_BROKER, MQTT_PORT, 60)
+client.connect(MQTT_BROKER, MQTT_PORT, 15)
 
 # Loop to keep the connection alive
 client.loop_start()
@@ -31,9 +32,7 @@ try:
         # Publish the message to the topic
         client.publish("/control/status", "up")
         print("Message published: up")
-        
-        # Wait for 15 seconds before sending the next message
-        time.sleep(15)
+        time.sleep(MQTT_SLEEP)
 except KeyboardInterrupt:
     print("Disconnected")
     client.loop_stop()
