@@ -11,7 +11,7 @@ MQTT_BROKER = os.environ.get("MQTT_BROKER", "localhost")
 MQTT_PORT = int(os.environ.get("MQTT_PORT", 1883))
 MQTT_USERNAME = os.environ.get("MQTT_USERNAME", None)
 MQTT_PASSWORD = os.environ.get("MQTT_PASSWORD", None)
-MQTT_SLEEP = int(os.environ.get("MQTT_SLEEP", 60))
+MQTT_SLEEP = int(os.environ.get("MQTT_SLEEP", 120))
 
 # Initialize MQTT client
 client = mqtt.Client()
